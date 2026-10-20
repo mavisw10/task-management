@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+@import "tailwindcss";
+
+
+html, body
+{
+    font-family: "Chiron GoRound TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color:#409EFF;
+} 
+
+h1{
+    font-weight: 550;
+    font-size: 30px;
+}
+
+.el-main {
+    --el-main-padding: 10px;
+}
+
+.el-header {
+    --el-header-height: 40px;
+}
+
+.el-button {
+    width: 100px;
+}
