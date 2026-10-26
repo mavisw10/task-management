@@ -4,7 +4,9 @@
 [![Vite](https://img.shields.io/badge/Vite-8-646cff?logo=vite&logoColor=white)](https://vite.dev/)
 [![Element Plus](https://img.shields.io/badge/Element%20Plus-2.4062b3?logo=elementplus&logoColor=white)](https://element-plus.org/)
 [![TanStack Query](https://img.shields.io/badge/TanStack%20Query-v5-ff4154?logo=reactquery&logoColor=white)](https://tanstack.com/query)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub Pages](https://github.com/mavisw10/task-management/actions/workflows/deploy.yml/badge.svg)](https://github.com/mavisw10/task-management/actions/workflows/deploy.yml)
+
 
 A full-stack task manager built with **Vue 3 + Vite** and an **Express** API. Create, edit, filter and track tasks with live counters, due-date countdowns and English/中文 localization — try the [live demo](https://mavisw10.github.io/task-management/), which runs entirely in your browser (no server required).
 
