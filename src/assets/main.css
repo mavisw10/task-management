@@ -8,12 +8,13 @@ html, body
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
-    color:#409EFF;
-} 
+    color: #334155;
+}
 
 h1{
-    font-weight: 550;
+    font-weight: 600;
     font-size: 30px;
+    color: #409EFF;
 }
 
 .el-main {
@@ -22,8 +23,4 @@ h1{
 
 .el-header {
     --el-header-height: 40px;
-}
-
-.el-button {
-    width: 100px;
 }

@@ -82,6 +82,29 @@ const leftLabel = (row) => {
     return t('days-left', { count: n })
 }
 
+// Tag severity per status/priority so the table reads at a glance
+const statusTagType = (status) => ({
+    [STATUS.PENDING]: 'info',
+    [STATUS.IN_PROGRESS]: 'primary',
+    [STATUS.WAITING_REVIEW]: 'warning',
+    [STATUS.COMPLETED]: 'success',
+}[status] ?? 'info')
+
+const priorityTagType = (priority) => ({
+    [PRIORITY.HIGH]: 'danger',
+    [PRIORITY.MEDIUM]: 'warning',
+    [PRIORITY.LOW]: 'info',
+}[priority] ?? 'info')
+
+// Red for overdue, amber for due today, default otherwise
+const leftClass = (row) => {
+    const n = daysLeft(row.dueDate)
+    if (row.status === STATUS.COMPLETED || n === null) return ''
+    if (n < 0) return 'text-red-500 font-medium'
+    if (n === 0) return 'text-amber-500 font-medium'
+    return ''
+}
+
 const visibleTasks = computed(() => {
     if (view.value === 'active') {
         return taskList.value.filter(task => task.status !== STATUS.COMPLETED)
@@ -199,8 +222,15 @@ async function onDelete(row)
                         {{ t('new-task') }}
                     </ElButton>
                 </div>
-                <div>
-                    {{ activeCount }} {{ $t('active-tasks') }} • {{ completedCount }} {{ $t('completed') }}
+                <div class="mt-3 flex items-center gap-6">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-blue-50 p-2 px-4 text-sm font-medium text-gray-700">
+                        <span class="inline-block h-2 w-2 rounded-full bg-blue-500"></span>
+                        {{ activeCount }} {{ $t('active-tasks') }}
+                    </span>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-green-50 p-2 px-4 text-sm font-medium text-gray-700">
+                        <span class="inline-block h-2 w-2 rounded-full bg-green-500"></span>
+                        {{ completedCount }} {{ $t('completed') }}
+                    </span>
                 </div>
             </div>
             <div class="mt-7 bg-white p-5 rounded-2xl">
@@ -259,25 +289,35 @@ async function onDelete(row)
                     </ElForm>
                 </div>
 
-                <ElTable :data="visibleTasks" :border="true" class="mt-6" :empty-text="t('no-data')">
+                <ElTable :data="visibleTasks" class="mt-6" :empty-text="t('no-data')">
                     <ElTableColumn prop="id" :label="t('id')" sortable/>
-                    <ElTableColumn prop="taskName" :label="t('task-name')" />
+                    <ElTableColumn prop="taskName" :label="t('task-name')">
+                        <template #default="{ row }">
+                            <span :class="row.status === STATUS.COMPLETED
+                                ? 'line-through text-gray-400'
+                                : ''">{{ row.taskName }}</span>
+                        </template>
+                    </ElTableColumn>
                     <ElTableColumn prop="status" :label="t('status')"
                     >
                         <template #default="{ row }">
-                            {{  TranslateStatus(row.status) }}
+                            <ElTag :type="statusTagType(row.status)" effect="light" round>
+                                {{  TranslateStatus(row.status) }}
+                            </ElTag>
                         </template>
                     </ElTableColumn>
                     <ElTableColumn prop="priority" :label="t('priority')" sortable>
                          <template #default="{ row }">
-                            {{  TranslatePriority(row.priority) }}
+                            <ElTag :type="priorityTagType(row.priority)" effect="light" round>
+                                {{  TranslatePriority(row.priority) }}
+                            </ElTag>
                         </template>
                     </ElTableColumn>
                     <ElTableColumn prop="leftDays" :label="t('left')" sortable>
                         <template #default="{ row }">
-                            {{ row.status === STATUS.COMPLETED || !row.dueDate
+                            <span :class="leftClass(row)">{{ row.status === STATUS.COMPLETED || !row.dueDate
                                 ? '—'
-                                : leftLabel(row) }}
+                                : leftLabel(row) }}</span>
                         </template>
                     </ElTableColumn>
                     <ElTableColumn prop="dueDate" :label="t('due-date')" sortable>
