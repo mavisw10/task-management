@@ -69,7 +69,6 @@ npm run preview    # serve the build locally
 ```
 ├── backend/
 │   └── server.js            # Express REST API (in-memory store)
-├── docs/screenshots/        # README screenshots
 ├── src/
 │   ├── api/taskApi.js       # data layer: API with localStorage fallback
 │   ├── App.vue              # task list, filters, dialogs, counters
