@@ -10,8 +10,7 @@
 
 A full-stack task manager built with **Vue 3 + Vite** and an **Express** API. Create, edit, filter and track tasks with live counters, due-date countdowns and English/中文 localization — try the [live demo](https://mavisw10.github.io/task-management/), which runs entirely in your browser (no server required).
 
-![Task list dashboard](<img width="1907" height="910" alt="dashboard" src="https://github.com/user-attachments/assets/00074584-0fe9-4c02-b105-7e7e15e70cac" />
-)
+<img width="1200" alt="Task list dashboard" src="https://github.com/user-attachments/assets/00074584-0fe9-4c02-b105-7e7e15e70cac" />
 
 ## Features
 
@@ -22,8 +21,7 @@ A full-stack task manager built with **Vue 3 + Vite** and an **Express** API. Cr
 - **i18n** — full English and Simplified Chinese UI
 - **Works with or without a backend** — talks to the Express API when it is reachable and transparently falls back to `localStorage`, so the [GitHub Pages demo](https://mavisw10.github.io/task-management/) keeps full CRUD without a server
 
-![Create task dialog](<img width="1896" height="907" alt="image" src="https://github.com/user-attachments/assets/2914f981-062f-49c0-a603-50df64e67b56" />
-)
+<img width="1200" alt="Create task dialog" src="https://github.com/user-attachments/assets/2914f981-062f-49c0-a603-50df64e67b56" />
 
 ## Tech stack
 
